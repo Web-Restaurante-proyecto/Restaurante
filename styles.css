@@ -1,0 +1,215 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+   max-width: 500px;
+    margin: 0 auto;
+
+    background: white;
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.descripcion {
+    text-align: center;
+    color: #666;
+}
+
+
+/* CALENDARIO */
+
+.calendario {
+    margin-top: 30px;
+}
+
+.cabecera-calendario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cabecera-calendario h2 {
+    margin: 0;
+}
+
+.cabecera-calendario button {
+    border: none;
+    background: #333;
+    color: white;
+
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.dias-semana,
+.dias-calendario {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 5px;
+}
+
+.dias-semana {
+    margin-top: 20px;
+    margin-bottom: 5px;
+
+    text-align: center;
+    font-weight: bold;
+}
+
+.dias-calendario button {
+    border: none;
+    background: #eee;
+
+    height: 40px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.dias-calendario button:hover {
+    background: #ddd;
+}
+
+.dias-calendario button.seleccionado {
+    background: #333;
+    color: white;
+}
+
+.dias-calendario button.vacio {
+    background: transparent;
+    cursor: default;
+}
+
+
+/* HORARIOS */
+
+.horarios {
+    margin-top: 30px;
+}
+
+.horarios h2,
+.personas h2 {
+    font-size: 18px;
+}
+
+.horas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.horas button {
+    padding: 10px;
+
+    border: 1px solid #ccc;
+    background: white;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.horas button:hover {
+    background: #eee;
+}
+
+.horas button.seleccionada {
+    background: #333;
+    color: white;
+}
+
+
+/* PERSONAS */
+
+.personas {
+    margin-top: 30px;
+}
+
+.contador {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 20px;
+}
+
+.contador button {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #333;
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+#cantidad {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* BOTÓN */
+
+.boton-reservar {
+    width: 100%;
+
+    margin-top: 30px;
+    padding: 15px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #333;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.boton-reservar:hover {
+    background: #555;
+}
+
+
+/* CONFIRMACIÓN */
+
+.confirmacion {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    background: #e8f5e9;
+
+    color: #2e7d32;
+
+    text-align: center;
+
+    display: none;
+}
