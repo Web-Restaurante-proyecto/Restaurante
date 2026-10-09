@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas</title>
+    <link rel="stylesheet" href="stylereserva.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<a href="../index.html" id="volverInicio" class="boton-volver">Volver al inicio</a>
+</a>
+    <h1>Reserva tu mesa</h1>
+
+    <p class="descripcion">
+        Selecciona una fecha, una hora y cuántas personas sois.
+    </p>
+
+    <!-- Calendario -->
+    <section class="calendario">
+
+        <div class="cabecera-calendario">
+
+            <button type="button" id="mesAnterior">&lt;</button>
+
+            <h2 id="mesActual"></h2>
+
+            <button type="button" id="mesSiguiente">&gt;</button>
+
+        </div>
+
+        <div class="dias-semana">
+            <span>L</span>
+            <span>M</span>
+            <span>X</span>
+            <span>J</span>
+            <span>V</span>
+            <span>S</span>
+            <span>D</span>
+        </div>
+
+        <div id="diasCalendario" class="dias-calendario"></div>
+
+    </section>
+
+    <!-- Horarios -->
+    <section class="horarios">
+
+        <h2>Selecciona una hora</h2>
+
+        <div id="horas" class="horas">
+
+            <button type="button">13:00</button>
+            <button type="button">13:30</button>
+            <button type="button">14:00</button>
+            <button type="button">14:30</button>
+
+            <button type="button">20:00</button>
+            <button type="button">20:30</button>
+            <button type="button">21:00</button>
+            <button type="button">21:30</button>
+
+        </div>
+
+    </section>
+
+    <!-- Personas -->
+   <section class="personas">
+    <h2>Número de personas</h2>
+
+    <div class="contador">
+        <button type="button" id="menos">−</button>
+        <span id="cantidad">2</span>
+        <button type="button" id="mas">+</button>
+    </div>
+</section>
+
+    <!-- Reservar -->
+    <button type="button" id="botonReservar" class="boton-reservar">
+        Reservar mesa
+    </button>
+
+    <!-- Confirmación -->
+    <div id="confirmacion" class="confirmacion"></div>
+
+    <footer>
+        © 2025 Tierra de Sabor – Todos los derechos reservados
+    </footer>
+
+</body>
+
+</html>

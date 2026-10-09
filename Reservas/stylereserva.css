@@ -1,0 +1,268 @@
+
+/* CONFIGURACIÓN GENERAL */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 15px;
+    background-color: rgb(242, 204, 7);
+    color: black;
+    font-family: Arial, sans-serif;
+}
+
+/* BOTÓN VOLVER AL INICIO */
+
+.boton-volver {
+    display: inline-block;
+    margin: 5px 0 15px;
+    padding: 10px 16px;
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.boton-volver:hover {
+    background-color: rgb(242, 204, 7);
+    color: black;
+}
+h1 {
+    text-align: center;
+    color: black;
+}
+
+.descripcion {
+    color: #333;
+    text-align: center;
+}
+
+/* CAJAS PRINCIPALES */
+
+.calendario,
+.horarios,
+.personas {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto 0;
+    padding: 15px;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+}
+
+.horarios h2,
+.personas h2 {
+    font-size: 18px;
+}
+
+/* BOTONES GENERALES */
+
+.calendario button,
+.horarios button,
+.personas button,
+.boton-reservar {
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.calendario button:hover,
+.horarios button:hover,
+.personas button:hover,
+.boton-reservar:hover {
+    background-color: rgb(242, 204, 7);
+    color: black;
+}
+
+/* CABECERA DEL CALENDARIO */
+
+.cabecera-calendario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cabecera-calendario h2 {
+    margin: 0;
+}
+
+.cabecera-calendario button,
+.contador button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+}
+
+.cabecera-calendario button {
+    width: 35px;
+    height: 35px;
+}
+
+/* DÍAS DE LA SEMANA */
+
+.dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    margin: 20px 0 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.dias-calendario {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+}
+
+.dias-calendario button {
+    width: 100%;
+    min-width: 0;
+    height: 38px;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background-color: #eee;
+    color: black;
+}
+
+.dias-calendario button.seleccionado {
+    background-color: rgb(242, 204, 7);
+    color: black;
+}
+
+.dias-calendario button.vacio {
+    background-color: transparent;
+    cursor: default;
+}
+
+.dias-calendario button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.dias-calendario button:disabled:hover {
+    background-color: #eee;
+    color: black;
+}
+
+/* HORARIOS */
+
+.horas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.horas button {
+    min-width: 0;
+    padding: 12px 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    color: black;
+}
+
+.horas button.seleccionada {
+    background-color: rgb(242, 204, 7);
+    color: black;
+}
+
+/* NÚMERO DE PERSONAS */
+
+.contador {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.contador button {
+    font-size: 20px;
+}
+
+.contador button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#cantidad {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* BOTÓN DE RESERVAR */
+
+.boton-reservar {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 25px auto 0;
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.boton-reservar:hover {
+    background-color: black;
+    color: rgb(242, 204, 7);
+}
+
+/* CONFIRMACIÓN */
+
+.confirmacion {
+    display: none;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto 0;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    text-align: center;
+}
+
+/* PIE DE PÁGINA */
+
+footer {
+    margin: 30px auto 10px;
+    text-align: center;
+    color: black;
+    font-size: 13px;
+}
+
+/* ADAPTACIÓN A MÓVILES */
+
+@media (max-width: 380px) {
+    body {
+        padding: 10px;
+    }
+
+    .calendario,
+    .horarios,
+    .personas {
+        padding: 10px;
+    }
+
+    .dias-calendario button {
+        height: 34px;
+        font-size: 12px;
+    }
+
+    .contador {
+        gap: 12px;
+    }
+}
