@@ -12,7 +12,6 @@ const cantidad = document.getElementById("cantidad");
 const botonReservar = document.getElementById("botonReservar");
 const confirmacion = document.getElementById("confirmacion");
 
-// Fecha actual
 const hoy = new Date();
 hoy.setHours(0, 0, 0, 0);
 
@@ -23,40 +22,32 @@ let fechaSeleccionada = null;
 let horaSeleccionada = null;
 let personas = 2;
 
-// Nombres de los meses
 const nombresMeses = [
     "Enero", "Febrero", "Marzo", "Abril",
     "Mayo", "Junio", "Julio", "Agosto",
     "Septiembre", "Octubre", "Noviembre", "Diciembre"
 ];
 
-// Oculta la confirmación cuando se modifica la reserva
 function ocultarConfirmacion() {
     confirmacion.style.display = "none";
     confirmacion.textContent = "";
 }
 
-// Generar el calendario
 function generarCalendario() {
     mesActual.textContent = `${nombresMeses[mes]} ${anio}`;
     diasCalendario.innerHTML = "";
 
-    // Día de la semana del primer día del mes
-    // El calendario comienza en lunes
     const primerDia = new Date(anio, mes, 1).getDay();
     const espaciosIniciales = (primerDia + 6) % 7;
 
-    // Número de días del mes
     const totalDias = new Date(anio, mes + 1, 0).getDate();
 
-    // Espacios vacíos antes del día 1
     for (let i = 0; i < espaciosIniciales; i++) {
         const espacio = document.createElement("div");
         espacio.classList.add("vacio");
         diasCalendario.appendChild(espacio);
     }
 
-    // Crear cada día
     for (let dia = 1; dia <= totalDias; dia++) {
         const botonDia = document.createElement("button");
         botonDia.type = "button";
@@ -65,13 +56,11 @@ function generarCalendario() {
         const fechaDia = new Date(anio, mes, dia);
         fechaDia.setHours(0, 0, 0, 0);
 
-        // No permitir seleccionar días anteriores a hoy
         if (fechaDia < hoy) {
             botonDia.disabled = true;
             botonDia.classList.add("dia-pasado");
         }
 
-        // Mantener marcado el día seleccionado
         if (
             fechaSeleccionada &&
             fechaDia.getTime() === fechaSeleccionada.getTime()
@@ -89,7 +78,6 @@ function generarCalendario() {
     }
 }
 
-// Cambiar al mes anterior
 botonMesAnterior.addEventListener("click", function () {
     mes--;
 
@@ -101,7 +89,6 @@ botonMesAnterior.addEventListener("click", function () {
     generarCalendario();
 });
 
-// Cambiar al mes siguiente
 botonMesSiguiente.addEventListener("click", function () {
     mes++;
 
@@ -113,7 +100,6 @@ botonMesSiguiente.addEventListener("click", function () {
     generarCalendario();
 });
 
-// Seleccionar una hora
 horas.forEach(function (botonHora) {
     botonHora.addEventListener("click", function () {
         horas.forEach(function (boton) {
@@ -127,7 +113,6 @@ horas.forEach(function (botonHora) {
     });
 });
 
-// Actualizar el contador de personas
 function actualizarPersonas() {
     cantidad.textContent = personas;
 
@@ -135,7 +120,7 @@ function actualizarPersonas() {
     botonMas.disabled = personas >= 10;
 }
 
-// Restar personas
+
 botonMenos.addEventListener("click", function () {
     if (personas > 1) {
         personas--;
@@ -144,7 +129,7 @@ botonMenos.addEventListener("click", function () {
     }
 });
 
-// Sumar personas
+
 botonMas.addEventListener("click", function () {
     if (personas < 10) {
         personas++;
@@ -153,7 +138,7 @@ botonMas.addEventListener("click", function () {
     }
 });
 
-// Confirmar la reserva
+
 botonReservar.addEventListener("click", function () {
     if (!fechaSeleccionada || !horaSeleccionada) {
         confirmacion.textContent =
@@ -176,6 +161,5 @@ botonReservar.addEventListener("click", function () {
     confirmacion.style.display = "block";
 });
 
-// Iniciar el calendario y el contador
 generarCalendario();
 actualizarPersonas();
