@@ -1,86 +1,94 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservas</title>
+    <title>Reservas | Tierra de Sabor</title>
     <link rel="stylesheet" href="stylereserva.css">
     <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-<a href="../index.html" id="volverInicio" class="boton-volver">Volver al inicio</a>
-</a>
-    <h1>Reserva tu mesa</h1>
+    <header>
+        <a href="../index.html" id="volverInicio" class="boton-volver">Volver al inicio</a>
+        <img class="logo" src="../img/logo.jpeg" alt="Logo Tierra de Sabor">
+        <h1>Reserva tu mesa</h1>
+        <p class="descripcion">
+            Selecciona una fecha, una hora y cuántas personas sois.
+        </p>
+    </header>
 
-    <p class="descripcion">
-        Selecciona una fecha, una hora y cuántas personas sois.
-    </p>
+    <main>
 
-    <section class="calendario">
+        <section class="calendario">
 
-        <div class="cabecera-calendario">
+            <div class="cabecera-calendario">
 
-            <button type="button" id="mesAnterior">&lt;</button>
+                <button type="button" id="mesAnterior" aria-label="Mes anterior">&lt;</button>
 
-            <h2 id="mesActual"></h2>
+                <h2 id="mesActual"></h2>
 
-            <button type="button" id="mesSiguiente">&gt;</button>
+                <button type="button" id="mesSiguiente" aria-label="Mes siguiente">&gt;</button>
 
-        </div>
+            </div>
 
-        <div class="dias-semana">
-            <span>L</span>
-            <span>M</span>
-            <span>X</span>
-            <span>J</span>
-            <span>V</span>
-            <span>S</span>
-            <span>D</span>
-        </div>
+            <div class="dias-semana">
+                <span>L</span>
+                <span>M</span>
+                <span>X</span>
+                <span>J</span>
+                <span>V</span>
+                <span>S</span>
+                <span>D</span>
+            </div>
 
-        <div id="diasCalendario" class="dias-calendario"></div>
+            <div id="diasCalendario" class="dias-calendario"></div>
 
-    </section>
+        </section>
 
-    <section class="horarios">
+        <section class="horarios">
 
-        <h2>Selecciona una hora</h2>
+            <h2>Selecciona una hora</h2>
 
-        <div id="horas" class="horas">
+            <div id="horas" class="horas">
 
-            <button type="button">13:00</button>
-            <button type="button">13:30</button>
-            <button type="button">14:00</button>
-            <button type="button">14:30</button>
+                <button type="button">13:00</button>
+                <button type="button">13:30</button>
+                <button type="button">14:00</button>
+                <button type="button">14:30</button>
 
-            <button type="button">20:00</button>
-            <button type="button">20:30</button>
-            <button type="button">21:00</button>
-            <button type="button">21:30</button>
+                <button type="button">20:00</button>
+                <button type="button">20:30</button>
+                <button type="button">21:00</button>
+                <button type="button">21:30</button>
 
-        </div>
+            </div>
 
-    </section>
+        </section>
 
-   <section class="personas">
-    <h2>Número de personas</h2>
+        <section class="personas">
+            <h2>Número de personas</h2>
 
-    <div class="contador">
-        <button type="button" id="menos">−</button>
-        <span id="cantidad">2</span>
-        <button type="button" id="mas">+</button>
-    </div>
-</section>
+            <div class="contador">
+                <button type="button" id="menos" aria-label="Una persona menos">−</button>
+                <span id="cantidad">2</span>
+                <button type="button" id="mas" aria-label="Una persona más">+</button>
+            </div>
+        </section>
 
-    <button type="button" id="botonReservar" class="boton-reservar">
-        Reservar mesa
-    </button>
+        <button type="button" id="botonReservar" class="boton-reservar">
+            Reservar mesa
+        </button>
 
-    <div id="confirmacion" class="confirmacion"></div>
+        <div id="confirmacion" class="confirmacion" role="status" aria-live="polite"></div>
+
+    </main>
 
     <footer>
         © 2025 Tierra de Sabor – Todos los derechos reservados

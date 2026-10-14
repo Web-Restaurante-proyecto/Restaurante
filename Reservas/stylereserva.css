@@ -1,251 +1,482 @@
-* {
+
+/* --------------------------------------------------------------------------
+   2. VARIABLES
+   -------------------------------------------------------------------------- */
+:root {
+    --amarillo: #F2CC07;
+    /* Pantone 116 C · R242 G204 B7 */
+    --negro: #000000;
+    --blanco: #FFFFFF;
+    --ancho-contenido: 1080px;
+    --margen: clamp(1rem, 4vw, 2rem);
+    --espacio: clamp(2rem, 5vw, 3.5rem);
+    --radio: 16px;
+    --toque: 2.75rem;
+    /* 44 px: tamaño cómodo para tocar */
+
+    /* Logotipo: mínimo de marca en pantalla 40 px; área de protección
+       (módulo X) ≈ 21 % del ancho del logotipo (manual, p. 15). */
+    --logo-ancho: clamp(150px, 38vw, 220px);
+    --logo-x: calc(var(--logo-ancho) * 0.21);
+}
+
+
+/* --------------------------------------------------------------------------
+   3. BASE
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
-    width: 100%;
-    min-height: 100vh;
     margin: 0;
-    padding: 15px;
-    background-color: rgb(242, 204, 7);
-    color: black;
-    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--blanco);
+    color: var(--negro);
+    font-family: var(--f-principal);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. CABECERA: volver, logotipo y título
+   -------------------------------------------------------------------------- */
+header {
+    width: 100%;
+    max-width: var(--ancho-contenido);
+    margin-inline: auto;
+    padding: var(--margen);
+    display: grid;
+    grid-template-areas:
+        "volver"
+        "logo"
+        "titulo"
+        "texto";
+    gap: 0.5rem 2.5rem;
+    justify-items: start;
 }
 
 .boton-volver {
-    display: inline-block;
-    margin: 5px 0 15px;
-    padding: 10px 16px;
-    background-color: black;
-    color: white;
-    border: 2px solid black;
-    border-radius: 8px;
+    grid-area: volver;
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--toque);
+    padding: 0.5rem 1.25rem;
+    background: var(--negro);
+    color: var(--blanco);
+    border: 2px solid var(--negro);
+    border-radius: 12px;
+    font-family: var(--f-secundaria);
+    font-weight: 700;
     text-decoration: none;
-    font-weight: bold;
     transition: background-color 0.2s, color 0.2s, transform 0.3s ease;
 }
 
-.boton-volver:hover {
-    background-color: rgb(242, 204, 7);
-    color: black;
-    -ms-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+.boton-volver:hover,
+.boton-volver:focus-visible {
+    background: var(--amarillo);
+    color: var(--negro);
+    transform: scale(1.03);
+}
+
+.logo {
+    grid-area: logo;
+    display: block;
+    width: var(--logo-ancho);
+    height: auto;
+    /* no fijar ancho y alto a la vez: el logotipo no se deforma */
+    margin: var(--logo-x) var(--logo-x) var(--logo-x) 0;
+    /* área de protección */
+    border: 0;
+    box-shadow: none;
 }
 
 h1 {
-    text-align: center;
-    color: black;
+    grid-area: titulo;
+    align-self: end;
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp(2rem, 6vw, 3rem);
+    line-height: 1.1;
 }
 
 .descripcion {
-    color: #333;
-    text-align: center;
+    grid-area: texto;
+    align-self: start;
+    margin: 0;
+    max-width: 48ch;
+    font-size: 1.125rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. CONTENIDO: tres "pizarras" negras (calendario, horas, personas)
+   -------------------------------------------------------------------------- */
+main {
+    width: 100%;
+    max-width: var(--ancho-contenido);
+    margin-inline: auto;
+    padding: 0 var(--margen) var(--espacio);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
 }
 
 .calendario,
 .horarios,
 .personas {
-    width: 100%;
-    max-width: 500px;
-    margin: 20px auto 0;
-    padding: 15px;
-    background-color: black;
-    color: white;
-    border-radius: 15px;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: var(--negro);
+    color: var(--blanco);
+    border-radius: var(--radio);
 }
 
 .horarios h2,
 .personas h2 {
-    font-size: 18px;
+    margin: 0 0 1rem;
+    font-weight: 400;
+    font-size: 1.375rem;
+    line-height: 1.2;
 }
 
+/* Botones de las pizarras: base común */
 .calendario button,
 .horarios button,
-.personas button,
-.boton-reservar {
+.personas button {
+    font-family: var(--f-secundaria);
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s, transform 0.3s ease;
 }
 
 .calendario button:hover:not(:disabled):not(.vacio),
 .horarios button:hover:not(:disabled),
-.personas button:hover:not(:disabled),
-.boton-reservar:hover {
-    background-color: rgb(242, 204, 7);
-    color: black;
-    -ms-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+.personas button:hover:not(:disabled) {
+    background: var(--amarillo);
+    color: var(--negro);
+    transform: scale(1.06);
 }
 
+/* Foco de teclado visible sobre fondo negro */
+.calendario button:focus-visible,
+.horarios button:focus-visible,
+.personas button:focus-visible {
+    outline: 3px solid var(--amarillo);
+    outline-offset: 3px;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. CALENDARIO
+   -------------------------------------------------------------------------- */
 .cabecera-calendario {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
 }
 
 .cabecera-calendario h2 {
     margin: 0;
+    font-weight: 400;
+    font-size: 1.375rem;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: capitalize;
 }
 
+/* Botones redondos: mes anterior / siguiente y contador de personas */
 .cabecera-calendario button,
 .contador button {
-    width: 40px;
-    height: 40px;
-    border: none;
+    flex: none;
+    width: var(--toque);
+    height: var(--toque);
+    padding: 0;
+    border: 2px solid var(--blanco);
     border-radius: 50%;
-    background-color: #333;
-    color: white;
-}
-
-.cabecera-calendario button {
-    width: 35px;
-    height: 35px;
+    background: var(--blanco);
+    color: var(--negro);
+    font-weight: 700;
+    line-height: 1;
 }
 
 .dias-semana {
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
-    margin: 20px 0 5px;
+    margin: 1.25rem 0 0.5rem;
+    color: var(--amarillo);
+    font-weight: 700;
     text-align: center;
-    font-weight: bold;
 }
 
 .dias-calendario {
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
-    gap: 4px;
+    gap: 6px;
 }
 
 .dias-calendario button {
     width: 100%;
     min-width: 0;
-    height: 38px;
+    height: var(--toque);
     padding: 0;
-    border: none;
+    border: 2px solid var(--blanco);
     border-radius: 8px;
-    background-color: #eee;
-    color: black;
+    background: var(--blanco);
+    color: var(--negro);
 }
 
+/* Día elegido: amarillo, negrita y subrayado grueso (no solo color) */
 .dias-calendario button.seleccionado {
-    background-color: rgb(242, 204, 7);
-    color: black;
+    border-color: var(--amarillo);
+    background: var(--amarillo);
+    color: var(--negro);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
 }
 
-.dias-calendario button.vacio {
-    background-color: transparent;
-    cursor: default;
-}
-
+/* Día no disponible: sin relleno, borde discontinuo y tachado (sin opacidad) */
 .dias-calendario button:disabled {
-    opacity: 0.35;
+    border: 2px dashed var(--blanco);
+    background: transparent;
+    color: var(--blanco);
+    text-decoration: line-through;
     cursor: not-allowed;
 }
 
-.dias-calendario button:disabled:hover {
-    background-color: #eee;
-    color: black;
-    transform: none;
+/* Huecos del principio del mes: invisibles y sin interacción */
+.dias-calendario button.vacio,
+.dias-calendario button.vacio:disabled {
+    border: 0;
+    background: transparent;
+    text-decoration: none;
+    cursor: default;
+    pointer-events: none;
 }
 
+
+/* --------------------------------------------------------------------------
+   7. HORAS
+   Cuatro columnas: la primera fila son las comidas y la segunda las cenas.
+   -------------------------------------------------------------------------- */
 .horas {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px;
 }
 
 .horas button {
     min-width: 0;
-    padding: 12px 5px;
-    border: 1px solid #ccc;
+    min-height: var(--toque);
+    padding: 0.5rem 0.25rem;
+    border: 2px solid var(--blanco);
     border-radius: 8px;
-    background-color: white;
-    color: black;
+    background: var(--blanco);
+    color: var(--negro);
 }
 
+/* Hora elegida: amarillo, negrita y marca ✓ */
 .horas button.seleccionada {
-    background-color: rgb(242, 204, 7);
-    color: black;
+    border-color: var(--amarillo);
+    background: var(--amarillo);
+    color: var(--negro);
+    font-weight: 700;
 }
 
+.horas button.seleccionada::before {
+    content: "✓\00a0";
+}
+
+.horas button:disabled {
+    border: 2px dashed var(--blanco);
+    background: transparent;
+    color: var(--blanco);
+    text-decoration: line-through;
+    cursor: not-allowed;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. NÚMERO DE PERSONAS
+   -------------------------------------------------------------------------- */
 .contador {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 1.5rem;
 }
 
 .contador button {
-    font-size: 20px;
+    font-size: 1.5rem;
 }
 
 .contador button:disabled {
-    opacity: 0.4;
+    border: 2px dashed var(--blanco);
+    background: transparent;
+    color: var(--blanco);
     cursor: not-allowed;
 }
 
 #cantidad {
-    font-size: 20px;
-    font-weight: bold;
+    min-width: 2ch;
+    font-family: var(--f-principal);
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1;
+    text-align: center;
 }
 
+
+/* --------------------------------------------------------------------------
+   9. BOTÓN DE RESERVAR Y CONFIRMACIÓN
+   -------------------------------------------------------------------------- */
 .boton-reservar {
-    display: block;
+    grid-column: 1 / -1;
+    justify-self: start;
     width: 100%;
-    max-width: 500px;
-    margin: 25px auto 0;
-    padding: 15px;
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: black;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
+    max-width: 420px;
+    min-height: 3.5rem;
+    margin-top: 0.75rem;
+    padding: 0.9rem 1.5rem;
+    border: 2px solid var(--negro);
+    border-radius: 12px;
+    background: var(--amarillo);
+    color: var(--negro);
+    font-family: var(--f-secundaria);
+    font-weight: 700;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.3s ease;
 }
 
-.boton-reservar:hover {
-    background-color: black;
-    color: rgb(242, 204, 7);
+.boton-reservar:hover,
+.boton-reservar:focus-visible {
+    background: var(--negro);
+    color: var(--amarillo);
+    transform: scale(1.03);
 }
 
+.boton-reservar:focus-visible {
+    outline: 3px solid var(--negro);
+    outline-offset: 3px;
+}
+
+/* El script la muestra al confirmar; aquí solo se define su aspecto */
 .confirmacion {
     display: none;
-    width: 100%;
-    max-width: 500px;
-    margin: 20px auto 0;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    text-align: center;
+    grid-column: 1 / -1;
+    padding: 1rem 1.25rem;
+    background: var(--amarillo);
+    color: var(--negro);
+    border: 3px solid var(--negro);
+    border-radius: 12px;
+    font-family: var(--f-secundaria);
+    font-weight: 700;
+    font-size: 1.125rem;
 }
 
+
+/* --------------------------------------------------------------------------
+   10. PIE
+   -------------------------------------------------------------------------- */
 footer {
-    margin: 30px auto 10px;
+    margin-top: auto;
+    padding: 1.75rem var(--margen);
+    background: var(--negro);
+    border-top: 8px solid var(--amarillo);
+    color: var(--blanco);
+    font-family: var(--f-secundaria);
+    font-size: 0.9375rem;
     text-align: center;
-    color: black;
-    font-size: 13px;
 }
 
-@media (max-width: 380px) {
-    body {
-        padding: 10px;
+
+/* --------------------------------------------------------------------------
+   11. TABLET Y ESCRITORIO
+   -------------------------------------------------------------------------- */
+@media (min-width: 720px) {
+    header {
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "volver volver"
+            "logo   titulo"
+            "logo   texto";
+        align-items: center;
+    }
+}
+
+@media (min-width: 900px) {
+    main {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .calendario,
-    .horarios,
+    .calendario {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+    }
+
+    .horarios {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
     .personas {
-        padding: 10px;
+        grid-column: 2;
+        grid-row: 2;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   12. PANTALLAS MUY ESTRECHAS
+   -------------------------------------------------------------------------- */
+@media (max-width: 380px) {
+
+    .dias-calendario {
+        gap: 4px;
     }
 
     .dias-calendario button {
-        height: 34px;
-        font-size: 12px;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 340px) {
+    .horas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   13. MOVIMIENTO REDUCIDO
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
     }
 
-    .contador {
-        gap: 12px;
+    .boton-volver:hover,
+    .boton-volver:focus-visible,
+    .boton-reservar:hover,
+    .boton-reservar:focus-visible,
+    .calendario button:hover,
+    .horarios button:hover,
+    .personas button:hover {
+        transform: none !important;
     }
 }

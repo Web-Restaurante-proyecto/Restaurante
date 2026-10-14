@@ -1,78 +1,383 @@
-* {
+/* ==========================================================================
+   TIERRA DE SABOR · Página de inicio (menú)
+   Basado en el Manual de Identidad Corporativa:
+   - Colores: solo Pantone 116 C (#F2CC07), negro y blanco. Sin degradados,
+     sombras ni opacidades sobre los colores corporativos.
+   - Tipografías: Neutra Text (principal), DIN y ITC New Baskerville (secundarias).
+   - Logotipo: sin deformar, sin bordes, con su área de protección (módulo X).
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. TIPOGRAFÍAS
+   Las tres familias son comerciales: hay que cargar los archivos con licencia
+   en la carpeta /fonts (los nombres de abajo son orientativos). Mientras no
+   estén, el navegador usa las tipografías de reserva de cada pila.
+   -------------------------------------------------------------------------- */
+@font-face {
+    font-family: "Neutra Text";
+    src: local("Neutra Text"), local("NeutraText-Book"),
+        url("fonts/NeutraText-Book.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neutra Text";
+    src: local("Neutra Text Bold"), local("NeutraText-Bold"),
+        url("fonts/NeutraText-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "DIN";
+    src: local("DIN"), local("DIN Pro"),
+        url("fonts/DIN-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "DIN";
+    src: local("DIN Bold"), local("DIN Pro Bold"),
+        url("fonts/DIN-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ITC New Baskerville";
+    src: local("ITC New Baskerville"), local("New Baskerville"),
+        url("fonts/NewBaskerville-Roman.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. VARIABLES
+   -------------------------------------------------------------------------- */
+:root {
+    --amarillo: #F2CC07;
+    --negro: #000000;
+    --blanco: #FFFFFF;
+    /* Medidas */
+    --ancho-contenido: 1080px;
+    --margen: clamp(1rem, 4vw, 2rem);
+    --espacio: clamp(2rem, 5vw, 3.5rem);
+    --radio: 16px;
+    --logo-ancho: clamp(150px, 38vw, 220px);
+    --logo-x: calc(var(--logo-ancho) * 0.21);
+}
+
+
+/* --------------------------------------------------------------------------
+   3. BASE
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 25px;
-    background-color: #F2CC07;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    background: var(--blanco);
+    color: var(--negro);
+    font-family: var(--f-principal);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+}
+header {
+    max-width: var(--ancho-contenido);
+    margin-inline: auto;
+    padding: var(--margen);
+    display: grid;
+    grid-template-areas:
+        "logo"
+        "titulo"
+        "texto";
+    gap: 0.5rem 2.5rem;
+    justify-items: start;
+    text-align: left;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 5px;
+header h1 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
 
-#indice nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 20px;
-}
-
-.boton-nav,
-.boton-principal,
-.boton-secundario {
+.logo {
+    grid-area: logo;
     display: block;
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    text-align: center;
+    width: var(--logo-ancho);
+    height: auto;
+    margin: var(--logo-x) var(--logo-x) var(--logo-x) 0;
+    border: 0;
+    box-shadow: none;
+}
+
+header h2 {
+    grid-area: titulo;
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    line-height: 1.1;
+}
+
+header p {
+    grid-area: texto;
+    margin: 0;
+    max-width: 48ch;
+    font-size: 1.125rem;
+}
+
+main {
+    max-width: var(--ancho-contenido);
+    margin-inline: auto;
+    padding: 0 var(--margen) var(--espacio);
+    display: grid;
+    grid-template-columns: 1fr;
+}
+nav {
+    grid-column: 1 / -1;
+    margin-bottom: var(--espacio);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    background: var(--amarillo);
+    border: 2px solid var(--amarillo);
+    border-radius: var(--radio);
+    overflow: hidden;
+}
+
+nav li {
+    display: flex;
+    background: var(--negro);
+}
+
+nav a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-height: 4rem;
+    padding: 0.9rem 1.5rem;
+    color: var(--blanco);
+    font-size: clamp(1.25rem, 3.4vw, 1.6rem);
+    line-height: 1.2;
     text-decoration: none;
-    border: 2px solid black;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    background: var(--amarillo);
+    color: var(--negro);
+}
+
+nav a:focus-visible {
+    outline: 3px solid var(--negro);
+    outline-offset: -8px;
+}
+nav a[href$="Reservas.html"] {
+    background: var(--amarillo);
+    color: var(--negro);
+    font-weight: 700;
+}
+
+nav a[href$="Reservas.html"]:hover,
+nav a[href$="Reservas.html"]:focus-visible {
+    background: var(--blanco);
+}
+
+main>h2 {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 1.75rem 1.5rem 0.75rem;
+    background: var(--amarillo);
+    border-radius: var(--radio) var(--radio) 0 0;
+    font-weight: 400;
+    font-size: clamp(1.7rem, 4.6vw, 2.5rem);
+    line-height: 1.12;
+}
+
+main>h2+p {
+    margin: 0;
+    padding: 0 1.5rem 1.75rem;
+    background: var(--amarillo);
+    border-radius: 0 0 var(--radio) var(--radio);
+    font-family: var(--f-editorial);
+    font-size: 1.1875rem;
+    line-height: 1.65;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. VÍDEOS Y BOTÓN DEL CANAL
+   -------------------------------------------------------------------------- */
+.multimedia {
+    grid-column: 1 / -1;
+    margin-top: var(--espacio);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+.video1,
+.video2 {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--negro);
+    border-radius: var(--radio);
+    overflow: hidden;
+}
+
+.multimedia iframe {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.canal {
+    grid-column: 1 / -1;
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 3.25rem;
+    padding: 0.75rem 1.75rem;
+    background: var(--negro);
+    color: var(--blanco);
+    border: 2px solid var(--negro);
+    border-radius: 12px;
+    font-family: var(--f-secundaria);
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s, transform 0.3s ease;
 }
 
-.boton-nav:hover,
-.boton-principal:hover,
-.boton-secundario:hover {
-    background-color: rgb(242, 204, 7);
-    color: black;
-    transform: scale(1.1);
+.canal:hover,
+.canal:focus-visible {
+    background: var(--amarillo);
+    color: var(--negro);
+    transform: scale(1.03);
 }
 
-.boton-nav {
-    display: inline-block;
-    padding: 8px 14px;
-    font-size: 14px;
-    border-radius: 6px;
+.canal:focus-visible {
+    outline: 3px solid var(--negro);
+    outline-offset: 3px;
 }
 
-.boton-principal {
-    width: 100%;
-    max-width: 320px;
-    margin: 15px auto;
-    padding: 16px 24px;
-    font-size: 20px;
-    border-radius: 12px;
+.letra-canal {
+    line-height: 1;
 }
 
-.boton-secundario {
-    width: 100%;
-    max-width: 250px;
-    margin: 12px auto;
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 8px;
+
+/* --------------------------------------------------------------------------
+   9. PIE
+   -------------------------------------------------------------------------- */
+footer {
+    padding: 1.75rem var(--margen);
+    background: var(--negro);
+    border-top: 8px solid var(--amarillo);
+    color: var(--blanco);
+    font-family: var(--f-secundaria);
+    font-size: 0.9375rem;
+    text-align: center;
 }
 
-.boton-secundario.boton-pequeno {
-    max-width: 180px;
-    padding: 8px 14px;
-    font-size: 14px;
+footer p {
+    margin: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   10. TABLET Y ESCRITORIO
+   -------------------------------------------------------------------------- */
+@media (min-width: 720px) {
+    header {
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "logo titulo"
+            "logo texto";
+        align-items: center;
+    }
+
+    header h2 {
+        align-self: end;
+    }
+
+    header p {
+        align-self: start;
+    }
+
+    /* Menú en dos columnas; la última fila (Alérgenos) ocupa todo el ancho */
+    nav ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    nav li:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .multimedia {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    main {
+        grid-template-columns: 1fr 1.2fr;
+    }
+
+    main>h2 {
+        padding: 2rem 1.5rem 2rem 2rem;
+        border-radius: var(--radio) 0 0 var(--radio);
+    }
+
+    main>h2+p {
+        padding: 2rem 2rem 2rem 0.5rem;
+        border-radius: 0 var(--radio) var(--radio) 0;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   11. MOVIMIENTO REDUCIDO
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+
+    .canal:hover,
+    .canal:focus-visible {
+        transform: none;
+    }
 }
