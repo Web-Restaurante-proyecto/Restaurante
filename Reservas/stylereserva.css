@@ -1,131 +1,18 @@
-
-/* --------------------------------------------------------------------------
-   2. VARIABLES
-   -------------------------------------------------------------------------- */
-:root {
-    --amarillo: #F2CC07;
-    /* Pantone 116 C · R242 G204 B7 */
-    --negro: #000000;
-    --blanco: #FFFFFF;
-    --ancho-contenido: 1080px;
-    --margen: clamp(1rem, 4vw, 2rem);
-    --espacio: clamp(2rem, 5vw, 3.5rem);
-    --radio: 16px;
-    --toque: 2.75rem;
-    /* 44 px: tamaño cómodo para tocar */
-
-    /* Logotipo: mínimo de marca en pantalla 40 px; área de protección
-       (módulo X) ≈ 21 % del ancho del logotipo (manual, p. 15). */
-    --logo-ancho: clamp(150px, 38vw, 220px);
-    --logo-x: calc(var(--logo-ancho) * 0.21);
-}
+/* ==========================================================================
+   TIERRA DE SABOR · Página de reservas  (carpeta /Reservas)
+   Estilos propios de reservas. Variables, base, cabecera y pie están en
+   ../base.css. Tipografías en ../fonts/fonts.css.
+   - Los estados (seleccionado, no disponible, confirmación) se distinguen
+     también por forma (subrayado, tachado, borde discontinuo, ✓), no solo
+     por color, y sin opacidades ni grises.
+   - Nombres de clases e ids sin cambios: el script.js sigue funcionando.
+   ========================================================================== */
 
 
 /* --------------------------------------------------------------------------
-   3. BASE
-   -------------------------------------------------------------------------- */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-html {
-    -webkit-text-size-adjust: 100%;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: var(--blanco);
-    color: var(--negro);
-    font-family: var(--f-principal);
-    font-size: 1.0625rem;
-    line-height: 1.6;
-}
-
-
-/* --------------------------------------------------------------------------
-   4. CABECERA: volver, logotipo y título
-   -------------------------------------------------------------------------- */
-header {
-    width: 100%;
-    max-width: var(--ancho-contenido);
-    margin-inline: auto;
-    padding: var(--margen);
-    display: grid;
-    grid-template-areas:
-        "volver"
-        "logo"
-        "titulo"
-        "texto";
-    gap: 0.5rem 2.5rem;
-    justify-items: start;
-}
-
-.boton-volver {
-    grid-area: volver;
-    display: inline-flex;
-    align-items: center;
-    min-height: var(--toque);
-    padding: 0.5rem 1.25rem;
-    background: var(--negro);
-    color: var(--blanco);
-    border: 2px solid var(--negro);
-    border-radius: 12px;
-    font-family: var(--f-secundaria);
-    font-weight: 700;
-    text-decoration: none;
-    transition: background-color 0.2s, color 0.2s, transform 0.3s ease;
-}
-
-.boton-volver:hover,
-.boton-volver:focus-visible {
-    background: var(--amarillo);
-    color: var(--negro);
-    transform: scale(1.03);
-}
-
-.logo {
-    grid-area: logo;
-    display: block;
-    width: var(--logo-ancho);
-    height: auto;
-    /* no fijar ancho y alto a la vez: el logotipo no se deforma */
-    margin: var(--logo-x) var(--logo-x) var(--logo-x) 0;
-    /* área de protección */
-    border: 0;
-    box-shadow: none;
-}
-
-h1 {
-    grid-area: titulo;
-    align-self: end;
-    margin: 0;
-    font-weight: 400;
-    font-size: clamp(2rem, 6vw, 3rem);
-    line-height: 1.1;
-}
-
-.descripcion {
-    grid-area: texto;
-    align-self: start;
-    margin: 0;
-    max-width: 48ch;
-    font-size: 1.125rem;
-}
-
-
-/* --------------------------------------------------------------------------
-   5. CONTENIDO: tres "pizarras" negras (calendario, horas, personas)
+   1. CONTENIDO: tres "pizarras" negras (calendario, horas, personas)
    -------------------------------------------------------------------------- */
 main {
-    width: 100%;
-    max-width: var(--ancho-contenido);
-    margin-inline: auto;
-    padding: 0 var(--margen) var(--espacio);
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.25rem;
@@ -176,7 +63,7 @@ main {
 
 
 /* --------------------------------------------------------------------------
-   6. CALENDARIO
+   2. CALENDARIO
    -------------------------------------------------------------------------- */
 .cabecera-calendario {
     display: flex;
@@ -214,6 +101,7 @@ main {
     grid-template-columns: repeat(7, minmax(0, 1fr));
     margin: 1.25rem 0 0.5rem;
     color: var(--amarillo);
+    font-family: var(--f-secundaria);
     font-weight: 700;
     text-align: center;
 }
@@ -267,7 +155,7 @@ main {
 
 
 /* --------------------------------------------------------------------------
-   7. HORAS
+   3. HORAS
    Cuatro columnas: la primera fila son las comidas y la segunda las cenas.
    -------------------------------------------------------------------------- */
 .horas {
@@ -308,7 +196,7 @@ main {
 
 
 /* --------------------------------------------------------------------------
-   8. NÚMERO DE PERSONAS
+   4. NÚMERO DE PERSONAS
    -------------------------------------------------------------------------- */
 .contador {
     display: flex;
@@ -339,7 +227,7 @@ main {
 
 
 /* --------------------------------------------------------------------------
-   9. BOTÓN DE RESERVAR Y CONFIRMACIÓN
+   5. BOTÓN DE RESERVAR Y CONFIRMACIÓN
    -------------------------------------------------------------------------- */
 .boton-reservar {
     grid-column: 1 / -1;
@@ -388,34 +276,8 @@ main {
 
 
 /* --------------------------------------------------------------------------
-   10. PIE
+   TABLET Y ESCRITORIO
    -------------------------------------------------------------------------- */
-footer {
-    margin-top: auto;
-    padding: 1.75rem var(--margen);
-    background: var(--negro);
-    border-top: 8px solid var(--amarillo);
-    color: var(--blanco);
-    font-family: var(--f-secundaria);
-    font-size: 0.9375rem;
-    text-align: center;
-}
-
-
-/* --------------------------------------------------------------------------
-   11. TABLET Y ESCRITORIO
-   -------------------------------------------------------------------------- */
-@media (min-width: 720px) {
-    header {
-        grid-template-columns: auto 1fr;
-        grid-template-areas:
-            "volver volver"
-            "logo   titulo"
-            "logo   texto";
-        align-items: center;
-    }
-}
-
 @media (min-width: 900px) {
     main {
         grid-template-columns: 1fr 1fr;
@@ -439,7 +301,7 @@ footer {
 
 
 /* --------------------------------------------------------------------------
-   12. PANTALLAS MUY ESTRECHAS
+   6. PANTALLAS MUY ESTRECHAS
    -------------------------------------------------------------------------- */
 @media (max-width: 380px) {
 
@@ -455,28 +317,5 @@ footer {
 @media (max-width: 340px) {
     .horas {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-
-/* --------------------------------------------------------------------------
-   13. MOVIMIENTO REDUCIDO
-   -------------------------------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        transition: none !important;
-    }
-
-    .boton-volver:hover,
-    .boton-volver:focus-visible,
-    .boton-reservar:hover,
-    .boton-reservar:focus-visible,
-    .calendario button:hover,
-    .horarios button:hover,
-    .personas button:hover {
-        transform: none !important;
     }
 }
