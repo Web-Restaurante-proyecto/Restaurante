@@ -1,0 +1,204 @@
+/* ==========================================================================
+   TIERRA DE SABOR · base.css  (estilos comunes a todas las páginas)
+   Manual de Identidad Corporativa:
+   - Colores: solo amarillo #F2CC07 (Pantone 116 C), negro y blanco.
+     Sin degradados, sombras, grises ni opacidades.
+   - Tipografías: Neutra Text, DIN e ITC New Baskerville (fonts/fonts.css).
+   - Logotipo sin deformar y con su área de protección (módulo X).
+
+   Orden de carga en cada página:
+     1. fonts/fonts.css   2. base.css   3. el CSS propio de la página
+
+   La cabecera común espera, en este orden y todos opcionales:
+     <a class="boton-volver"> · <img class="logo"> · <h1> (o <h2>) · <p>
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES
+   -------------------------------------------------------------------------- */
+:root {
+    /* Paleta oficial */
+    --amarillo: #F2CC07;
+    /* Pantone 116 C · R242 G204 B7 */
+    --negro: #000000;
+    --blanco: #FFFFFF;
+    /* Medidas */
+    --ancho-contenido: 1080px;
+    --margen: clamp(1rem, 4vw, 2rem);
+    --espacio: clamp(2rem, 5vw, 3.5rem);
+    --radio: 16px;
+    --toque: 2.75rem;
+    /* 44 px: tamaño cómodo para tocar */
+
+    /* Logotipo: mínimo de marca en pantalla 40 px de ancho. El área de
+       protección (módulo X) mide aprox. el 21 % del ancho del logotipo
+       (manual, p. 15). */
+    --logo-ancho: clamp(150px, 38vw, 220px);
+    --logo-x: calc(var(--logo-ancho) * 0.21);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. BASE
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--blanco);
+    color: var(--negro);
+    font-family: var(--f-principal);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+}
+
+header,
+main {
+    width: 100%;
+    max-width: var(--ancho-contenido);
+    margin-inline: auto;
+}
+
+main {
+    padding: 0 var(--margen) var(--espacio);
+}
+
+
+/* --------------------------------------------------------------------------
+   3. CABECERA COMÚN
+   -------------------------------------------------------------------------- */
+header {
+    padding: var(--margen);
+    display: grid;
+    grid-template-areas:
+        "volver"
+        "logo"
+        "titulo"
+        "texto";
+    column-gap: 2.5rem;
+    justify-items: start;
+    text-align: left;
+}
+
+.boton-volver {
+    grid-area: volver;
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--toque);
+    padding: 0.5rem 1.25rem;
+    background: var(--negro);
+    color: var(--blanco);
+    border: 2px solid var(--negro);
+    border-radius: 12px;
+    font-family: var(--f-secundaria);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s, transform 0.3s ease;
+}
+
+.boton-volver:hover,
+.boton-volver:focus-visible {
+    background: var(--amarillo);
+    color: var(--negro);
+    transform: scale(1.03);
+}
+
+.boton-volver:focus-visible {
+    outline: 3px solid var(--negro);
+    outline-offset: 3px;
+}
+
+.logo {
+    grid-area: logo;
+    display: block;
+    width: var(--logo-ancho);
+    height: auto;
+    /* nunca fijar ancho y alto a la vez: el logotipo no se deforma */
+    margin: var(--logo-x) var(--logo-x) var(--logo-x) 0;
+    /* área de protección; a la izquierda basta el borde de la página */
+    border: 0;
+}
+
+header h1,
+header h2 {
+    grid-area: titulo;
+    align-self: end;
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp(2rem, 6vw, 3rem);
+    line-height: 1.1;
+}
+
+header p {
+    grid-area: texto;
+    align-self: start;
+    margin: 0.5rem 0 0;
+    max-width: 48ch;
+    font-size: 1.125rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. PIE COMÚN
+   -------------------------------------------------------------------------- */
+footer {
+    margin-top: auto;
+    padding: 1.75rem var(--margen);
+    background: var(--negro);
+    border-top: 8px solid var(--amarillo);
+    color: var(--blanco);
+    font-family: var(--f-secundaria);
+    font-size: 0.9375rem;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. TABLET Y ESCRITORIO
+   -------------------------------------------------------------------------- */
+@media (min-width: 720px) {
+    header {
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "volver volver"
+            "logo   titulo"
+            "logo   texto";
+        align-items: center;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   6. MOVIMIENTO REDUCIDO
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+
+    a:hover,
+    a:focus-visible,
+    button:hover,
+    button:focus-visible {
+        transform: none !important;
+    }
+}

@@ -1,0 +1,112 @@
+/* ==========================================================================
+   TIERRA DE SABOR · Página de bebidas  (carpeta /bebidas)
+   Estilos propios de la carta de bebidas. Variables, base, cabecera y pie
+   están en ../base.css. Tipografías en ../fonts/fonts.css.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. CARTA DE BEBIDAS
+   Móvil: tarjetas horizontales (imagen a la izquierda, texto a la derecha).
+   Tablet: 2 columnas. Escritorio ancho: 4 columnas (dos filas de cuatro).
+   La imagen va sobre un panel amarillo; el texto, sobre negro.
+   -------------------------------------------------------------------------- */
+.carta {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+.bebida {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    overflow: hidden;
+    background: var(--negro);
+    color: var(--blanco);
+    border-radius: var(--radio);
+}
+
+.bebida img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 11rem;
+    padding: 0.75rem;
+    background: var(--amarillo);
+    object-fit: contain;
+    /* respeta las proporciones de la foto: nunca se deforma */
+    transition: transform 0.3s ease;
+}
+
+.bebida:hover img {
+    transform: scale(1.05);
+}
+
+.texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 1rem 1.25rem;
+}
+
+.nombre {
+    margin: 0;
+    color: var(--amarillo);
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.2;
+}
+
+.descripcion {
+    margin: 0;
+    font-family: var(--f-editorial);
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+
+/* --------------------------------------------------------------------------
+   TABLET Y ESCRITORIO
+   -------------------------------------------------------------------------- */
+@media (min-width: 560px) {
+    .carta {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bebida {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
+    .bebida img {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 1 / 1;
+    }
+
+    .texto {
+        justify-content: flex-start;
+        padding: 1.25rem;
+    }
+}
+
+@media (min-width: 1100px) {
+    .carta {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .bebida img {
+        aspect-ratio: 4 / 5;
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .bebida:hover img {
+        transform: none;
+    }
+}
