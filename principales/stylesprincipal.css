@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+:root {
+  --yellow: #ffcf00;
+  --yellow-dark: #e8b900;
+  --black: #171717;
+  --muted: #777;
+  --paper: #fff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--black); font-family: 'DM Sans', Arial, sans-serif; }
+.topbar { height: 82px; display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(22px, 6vw, 88px); border-bottom: 1px solid #ededed; }
+.back-link { display: inline-flex; align-items: center; gap: 12px; color: var(--black); text-decoration: none; font-size: 14px; font-weight: 700; transition: gap .2s ease; }
+.back-link:hover { gap: 17px; }
+.arrow { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--yellow); font-size: 23px; line-height: 1; }
+.brand { font-size: 15px; letter-spacing: 1.8px; font-weight: 800; display: flex; align-items: center; gap: 7px; }
+.brand-dot { width: 10px; height: 10px; display: inline-block; border-radius: 50%; background: var(--yellow); }
+.brand-light { font-weight: 400; }
+main { max-width: 1320px; padding: 0 clamp(22px, 6vw, 88px); margin: 0 auto; }
+.intro { text-align: center; padding: 76px 0 52px; }
+.eyebrow { display: inline-block; margin: 0 0 16px; padding: 8px 13px; background: var(--yellow); font-size: 10px; font-weight: 800; letter-spacing: 2.4px; }
+h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(42px, 6vw, 72px); line-height: 1.08; letter-spacing: -1.8px; }
+h1 span { position: relative; z-index: 0; white-space: nowrap; }
+h1 span::after { content: ''; position: absolute; height: 13px; bottom: 3px; left: -3px; right: -3px; background: var(--yellow); z-index: -1; }
+.subtitle { margin: 20px auto 0; max-width: 520px; color: var(--muted); font-size: 15px; line-height: 1.8; }
+.intro-line { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 29px; }
+.intro-line span:not(.line-dot) { height: 1px; width: 42px; background: #d8d8d8; }
+.line-dot { width: 7px; height: 7px; background: var(--yellow); transform: rotate(45deg); }
+.dishes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 22px; padding-bottom: 50px; }
+.dish-card { min-width: 0; display: flex; align-items: stretch; background: #fff; border: 1px solid #ededed; transform: scale(1); transform-origin: center; transition: transform .28s ease, box-shadow .28s ease; will-change: transform; position: relative; z-index: 0; }
+.dish-card:hover { transform: scale(1.045); box-shadow: 0 14px 30px #00000018; z-index: 3; }
+.photo-wrap { position: relative; overflow: hidden; flex: 0 0 48%; aspect-ratio: 1 / 1; background: #f4f4f1; }
+.photo-wrap::after { content: ''; position: absolute; inset: 0; border: 0 solid var(--yellow); transition: border-width .2s ease; pointer-events: none; }
+.dish-card:hover .photo-wrap::after { border-width: 4px; }
+.photo-wrap img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .45s ease; }
+.dish-card:hover .photo-wrap img { transform: scale(1.035); }
+.dish-number { position: absolute; left: 10px; top: 10px; z-index: 2; display: grid; place-items: center; width: 32px; height: 32px; background: var(--yellow); color: var(--black); font-size: 11px; font-weight: 800; }
+.dish-info { position: relative; flex: 1; min-width: 0; padding: 18px 15px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 9px; }
+.dish-category { margin: 0; color: #777; font-size: 9px; font-weight: 700; letter-spacing: 1.2px; line-height: 1.4; }
+.dish-info h2 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 19px; line-height: 1.35; }
+.dish-mark { display: grid; place-items: center; width: 30px; height: 30px; margin-top: 4px; border-radius: 50%; background: var(--yellow); font-size: 16px; transition: transform .2s ease; }
+.dish-card:hover .dish-mark { transform: rotate(45deg); }
+.footnote { text-align: center; padding: 0 0 55px; font-family: 'Playfair Display', Georgia, serif; font-size: 17px; font-style: italic; }
+.footnote span { color: var(--yellow-dark); font-size: 10px; margin-left: 6px; }
+footer { min-height: 65px; padding: 20px clamp(22px, 6vw, 88px); display: flex; justify-content: space-between; align-items: center; gap: 15px; background: var(--black); color: #fff; font-size: 9px; letter-spacing: 1.7px; }
+footer span:first-child { color: var(--yellow); font-weight: 800; }
+@media (max-width: 850px) {
+  .dishes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .dish-info { padding: 14px 12px; }
+  .dish-info h2 { font-size: 17px; }
+} .intro { padding-top: 60px; } 
+@media (max-width: 540px) {
+  .topbar { height: 70px; }
+  .brand { font-size: 11px; letter-spacing: 1px; }
+  .back-link { font-size: 12px; gap: 8px; }
+  .arrow { width: 32px; height: 32px; }
+  .dishes { grid-template-columns: 1fr; gap: 14px; }
+  .photo-wrap { flex-basis: 44%; aspect-ratio: 1 / 1; }
+  .dish-info { padding: 15px; gap: 8px; }
+  .dish-info h2 { font-size: 20px; }
+  .dish-category { font-size: 9px; }
+  .intro { padding: 48px 0 35px; }
+  .subtitle { font-size: 14px; }
+  footer { flex-direction: column; align-items: flex-start; }
+} .brand { font-size: 11px; letter-spacing: 1px; } .back-link { font-size: 12px; gap: 8px; } .arrow { width: 32px; height: 32px; } .dishes { grid-template-columns: 1fr; gap: 18px; } .photo-wrap { aspect-ratio: 1.35 / 1; } .dish-info h2 { font-size: 20px; } .intro { padding: 48px 0 35px; } .subtitle { font-size: 14px; } footer { flex-direction: column; align-items: flex-start; } 
+
+
+@media (prefers-reduced-motion: reduce) {
+  .dish-card, .photo-wrap img, .dish-mark { transition: none !important; }
+  .dish-card:hover { transform: none; }
+}
+
+
+/* Efecto divertido para el título principal: la comida aparece al pasar el cursor */
+.hero-title-wrap {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+.hero-title-wrap h1 {
+  position: relative;
+  z-index: 1;
+  cursor: default;
+}
+.food-pop {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  font-family: sans-serif;
+  font-size: clamp(25px, 3vw, 38px);
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 5px 5px #00000018);
+  transform: translateY(12px) scale(.35) rotate(-25deg);
+}
+.food-pop-one { top: -28px; left: 5%; }
+.food-pop-two { top: -8px; right: 2%; }
+.food-pop-three { bottom: -20px; right: 18%; }
+.food-pop-four { bottom: 3px; left: -3%; }
+.hero-title-wrap:hover .food-pop-one {
+  animation: food-bounce-one .72s cubic-bezier(.2,.85,.3,1.35) both, food-hover 2s ease-in-out .72s infinite;
+}
+.hero-title-wrap:hover .food-pop-two {
+  animation: food-bounce-two .76s cubic-bezier(.2,.85,.3,1.35) .08s both, food-hover 2.2s ease-in-out .84s infinite;
+}
+.hero-title-wrap:hover .food-pop-three {
+  animation: food-bounce-three .74s cubic-bezier(.2,.85,.3,1.35) .15s both, food-hover 1.9s ease-in-out .89s infinite;
+}
+.hero-title-wrap:hover .food-pop-four {
+  animation: food-bounce-four .7s cubic-bezier(.2,.85,.3,1.35) .2s both, food-hover 2.1s ease-in-out .9s infinite;
+}
+.hero-title-wrap:hover h1 span::after {
+  animation: yellow-swipe .5s ease-out both;
+}
+@keyframes food-bounce-one {
+  0% { opacity: 0; transform: translateY(18px) scale(.25) rotate(-40deg); }
+  68% { opacity: 1; transform: translateY(-9px) scale(1.22) rotate(13deg); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(-8deg); }
+}
+@keyframes food-bounce-two {
+  0% { opacity: 0; transform: translateY(20px) scale(.2) rotate(35deg); }
+  70% { opacity: 1; transform: translateY(-10px) scale(1.2) rotate(-14deg); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(8deg); }
+}
+@keyframes food-bounce-three {
+  0% { opacity: 0; transform: translateY(16px) scale(.25) rotate(-30deg); }
+  70% { opacity: 1; transform: translateY(-8px) scale(1.18) rotate(12deg); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(-5deg); }
+}
+@keyframes food-bounce-four {
+  0% { opacity: 0; transform: translateY(16px) scale(.2) rotate(30deg); }
+  70% { opacity: 1; transform: translateY(-8px) scale(1.18) rotate(-12deg); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(7deg); }
+}
+@keyframes food-hover {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -7px; }
+}
+@keyframes yellow-swipe {
+  from { transform: scaleX(.12); transform-origin: left; }
+  to { transform: scaleX(1); transform-origin: left; }
+}
+@media (max-width: 540px) {
+  .food-pop-one { top: -24px; left: 0; }
+  .food-pop-two { right: 0; top: -18px; }
+  .food-pop-three { right: 8%; bottom: -24px; }
+  .food-pop-four { left: -1%; bottom: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-wrap:hover .food-pop { animation: none !important; opacity: 1; transform: none; }
+  .hero-title-wrap:hover h1 span::after { animation: none !important; }
+}
