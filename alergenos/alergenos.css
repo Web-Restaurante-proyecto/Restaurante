@@ -1,0 +1,91 @@
+
+footer {
+    margin-top: auto;
+    padding: 1.75rem var(--margen);
+    background: var(--negro);
+    border-top: 8px solid var(--amarillo);
+    color: var(--blanco);
+    font-family: var(--f-secundaria);
+    font-size: 0.9375rem;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. TABLET Y ESCRITORIO
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   6. MOVIMIENTO REDUCIDO
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+
+    a:hover,
+    a:focus-visible,
+    button:hover,
+    button:focus-visible {
+        transform: none !important;
+    }
+}
+
+header :is(h1, p) {
+    color: hsl(0, 0%, 0%);
+    font-size: 1.125rem;
+}
+
+main h2 {
+    font-size: 1.125rem;
+    text-align: center;
+}
+
+img {
+    object-fit: contain;
+    width: 110px;
+    height: auto;
+    object-fit: cover; 
+    filter:contrast(3), saturate(1.4);
+    image-rendering: -webkit-optimize-contrast;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
+    column-gap: 16px;
+    row-gap: 16px;
+}
+
+li {
+    display: flex;
+    flex-direction: column;   /* imagen arriba, texto debajo */
+    align-items: center;      /* centra los dos en el mismo eje */
+    gap: 6px;
+    text-align: center;
+}
+
+li img {
+    width: 90px;
+    height: 90px;       
+    object-fit: contain;  
+    filter: contrast(1.2) saturate(1.4);
+}
+li span {
+    font-size: 0.875rem;
+    color: var(--negro);
+    border-top: 6px;
+}
+
+
