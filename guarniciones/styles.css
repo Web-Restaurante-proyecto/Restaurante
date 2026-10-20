@@ -1,0 +1,233 @@
+
+header h1 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. MENÚ DE NAVEGACIÓN · la "pizarra" de la carta
+   Filas negras separadas por una línea amarilla de 2 px.
+   -------------------------------------------------------------------------- */
+nav {
+    overflow: hidden;
+    grid-column: 1 / -1;
+    margin-bottom: var(--espacio);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    background: var(--amarillo);
+    border: 2px solid var(--amarillo);
+    border-radius: var(--radio);
+    overflow: hidden;
+}
+
+nav li {
+    display: flex;
+    background: var(--negro);
+}
+
+nav a {
+    flex: 1;
+    float: left;
+    display: block;
+    align-items: center;
+    padding: 14px 16px;
+    color: var(--blanco);
+    font-size: 17px;
+    line-height: 1.2;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    background: var(--amarillo);
+    color: var(--negro);
+}
+
+nav a:focus-visible {
+    outline: 3px solid var(--negro);
+    outline-offset: -8px;
+}
+
+/* Reservas: la acción principal, siempre en amarillo */
+nav a[href$="reservas.html" i] {
+    background: var(--amarillo);
+    color: var(--negro);
+    font-weight: 700;
+}
+
+nav a[href$="reservas.html" i]:hover,
+nav a[href$="reservas.html" i]:focus-visible {
+    background: var(--blanco);
+}
+
+@media screen and (max-width: 600px) {
+        .nav.responsive {position: relative;}
+        .nav.responsive .icon {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+        .nav.responsive a {
+          float: none;
+          display: block;
+          text-align: left;
+        }
+        .nav.responsive .dropdown {float: none;}
+        .nav.responsive .dropdown-content {position: relative;}
+        .nav.responsive .dropdown .dropbtn {
+          display: block;
+          width: 100%;
+          text-align: left;
+        }
+      }
+
+
+/* --------------------------------------------------------------------------
+   3. BLOQUE EDITORIAL ("Bocado a bocado…")
+   Título y párrafo comparten fondo amarillo y se leen como un solo bloque.
+   El párrafo usa la tipografía editorial del manual.
+   -------------------------------------------------------------------------- */
+main>h2 {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 1.75rem 1.5rem 0.75rem;
+    background: var(--amarillo);
+    border-radius: var(--radio) var(--radio) 0 0;
+    font-weight: 400;
+    font-size: clamp(1.7rem, 4.6vw, 2.5rem);
+    line-height: 1.12;
+}
+
+main>h2+p {
+    margin: 0;
+    padding: 0 1.5rem 1.75rem;
+    background: var(--amarillo);
+    border-radius: 0 0 var(--radio) var(--radio);
+    font-family: var(--f-editorial);
+    font-size: 1.1875rem;
+    line-height: 1.65;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. VÍDEOS Y BOTÓN DEL CANAL
+   -------------------------------------------------------------------------- */
+.multimedia {
+    grid-column: 1 / -1;
+    margin-top: var(--espacio);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+.video1,
+.video2 {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--negro);
+    border-radius: var(--radio);
+    overflow: hidden;
+}
+
+.multimedia iframe {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.canal {
+    grid-column: 1 / -1;
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 3.25rem;
+    padding: 0.75rem 1.75rem;
+    background: var(--negro);
+    color: var(--blanco);
+    border: 2px solid var(--negro);
+    border-radius: 12px;
+    font-family: var(--f-secundaria);
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.3s ease;
+}
+
+.canal:hover,
+.canal:focus-visible {
+    background: var(--amarillo);
+    color: var(--negro);
+    transform: scale(1.03);
+}
+
+.canal:focus-visible {
+    outline: 3px solid var(--negro);
+    outline-offset: 3px;
+}
+
+.letra-canal {
+    line-height: 1;
+}
+
+
+/* --------------------------------------------------------------------------
+   TABLET Y ESCRITORIO
+   -------------------------------------------------------------------------- */
+@media (min-width: 720px) {
+
+    /* Menú en dos columnas; la última fila (Alérgenos) ocupa todo el ancho */
+    nav ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    nav li:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .multimedia {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    main {
+        grid-template-columns: 1fr 1.2fr;
+    }
+
+    main>h2 {
+        padding: 2rem 1.5rem 2rem 2rem;
+        border-radius: var(--radio) 0 0 var(--radio);
+    }
+
+    main>h2+p {
+        padding: 2rem 2rem 2rem 0.5rem;
+        border-radius: 0 var(--radio) var(--radio) 0;
+    }
+}
