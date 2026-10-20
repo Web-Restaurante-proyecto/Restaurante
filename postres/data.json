@@ -1,0 +1,26 @@
+[
+  {
+    "imagen": "img/ponche.png",
+    "nombre": "Ponche Segoviano tradicional con mazapán y crema pastelera."
+  },
+  {
+    "imagen": "img/arroz.png",
+    "nombre": "Arroz con Leche aromatizado con canela y limón al estilo de la abuela."
+  },
+  {
+    "imagen": "img/quesoymiel.png",
+    "nombre": "Queso Fresco de Burgos con Miel de los páramos castellanos."
+  },
+  {
+    "imagen": "img/hojaldre.png",
+    "nombre": "Hojaldres de Astorga artesanales bañados en almíbar."
+  },
+  {
+    "imagen": "img/mantecada.png",
+    "nombre": "Mantecadas de la Tierra con un toque de canela y mantequilla fina."
+  },
+  {
+    "imagen": "img/frutapostre.png",
+    "nombre": "Fruta de Temporada de los campos de Castilla seleccionada en su punto óptimo."
+  }
+]
