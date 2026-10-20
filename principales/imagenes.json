@@ -1,0 +1,53 @@
+{
+  "platos": [
+    {
+      "numero": "01",
+      "categoria": "PLATO PRINCIPAL · 01",
+      "titulo": "Una delicia de la casa",
+      "imagen": "img/plato-1.png",
+      "alt": "Plato de pescado con verduras"
+    },
+    {
+      "numero": "02",
+      "categoria": "PLATO PRINCIPAL · 02",
+      "titulo": "Sabor que sorprende",
+      "imagen": "img/plato-2.png",
+      "alt": "Pollo guisado en una cazuela"
+    },
+    {
+      "numero": "03",
+      "categoria": "PLATO PRINCIPAL · 03",
+      "titulo": "Hecho para disfrutar",
+      "imagen": "img/plato-3.png",
+      "alt": "Carne asada con patatas"
+    },
+    {
+      "numero": "04",
+      "categoria": "PLATO PRINCIPAL · 04",
+      "titulo": "Un clásico irresistible",
+      "imagen": "img/plato-4.png",
+      "alt": "Guiso de alubias con embutido"
+    },
+    {
+      "numero": "05",
+      "categoria": "PLATO PRINCIPAL · 05",
+      "titulo": "El toque especial",
+      "imagen": "img/plato-5.png",
+      "alt": "Plato de pescado con verduras"
+    },
+    {
+      "numero": "06",
+      "categoria": "PLATO PRINCIPAL · 06",
+      "titulo": "Una combinación perfecta",
+      "imagen": "img/plato-6.png",
+      "alt": "Carne a la parrilla con patatas"
+    },
+    {
+      "numero": "07",
+      "categoria": "PLATO PRINCIPAL · 07",
+      "titulo": "Tu próximo favorito",
+      "imagen": "img/Diseño sin título (7).png",
+      "alt": "Plato principal número siete"
+    }
+  ]
+}
