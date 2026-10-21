@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Head -->
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,22 +7,48 @@
     <title>Guarniciones - Tierra de Sabores</title>
 <style>
 
+.carta {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
 
 .plato {
-  display: flex;
+  display: block;
   align-items: center;
   gap: 20px;
   margin-bottom: 20px;
+  background: var(--negro);
+  color: var(--blanco);
+  border-radius: var(--radio);
+}
+
+.plato img {
+  display: block;
+  width: 170px;
+  height: 170px;
+    padding: 0.5rem;
+    background: var(--amarillo);
+  transition: transform 0.3s ease;
+}
+
+.plato:hover img {
+    transform: scale(1.05);
 }
 
 img {
-  width: 170px;
-  height: 170px;
   object-fit: cover; 
   flex-shrink: 0;
 }
 
 .info {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 1rem 1.25rem;
   flex: 1; 
 }
 
@@ -43,41 +68,103 @@ img {
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../base.css">
+<link rel="stylesheet" href="guarniciones.css">
 </head>
-<section class="carta-destacada" id="entrantes">
-<center>
-  <a href="#guarniciones"><h1>Guarniciones</h1></a>
-<div class="plato">
-  <img src="img/Diseño sin título (4).png" alt="Imagen de muestra">
-  <div class="info">
-  <h2>Patatas Asadas a la Brasera con hierbas aromáticas locales.</h2>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Página principal</a>
+  <a href="../entrantes/entrantes.html">Entrantes</a>
+  <a href="../principales/principales.html">Platos Principales</a>
+  <a href="../guarniciones/guarniciones.html">Guarniciones</a>
+  <a href="../bebidas/bebidas.html">Bebidas</a>
+  <a href="../postres/postres.html">Postres</a>
+  <a href="../alergenos/alergenos.html">Alérgenos</a>
 </div>
-</div>
-<div class="plato">
-  <img src="img/Diseño sin título (5).png" alt="Imagen de muestra">
-<div class="info">
-  <h2>Verduras de Temporada de la Huerta Castellana salteadas en AOVE.</h2>
-</div>
-</div>
-<div class="plato">
-  <img src="img/Diseño sin título (2).png" alt="Imagen de muestra">
-<div class="info">
-  <h2>Pan Ácimo y Hogaza Tradicional de masa madre.</h2>
-</div>
-</div>
-<div class="plato">
-  <img src="img/Diseño sin título (3).png" alt="Imagen de muestra">
-<div class="info">
-  <h2>Pimientos Piquillo asados a la leña con un toque de ajo confitado.</h2>
-</div>
-</div>
-<div class="plato">
-  <img src="img/Diseño sin título (1).png" alt="Imagen de muestra">
-<div class="info">
-  <h2>Ensalada de la Huerta con Tomates de Temporada y cebolleta fresca.</h2>
-</div>
-</div>
-</center>
+    <header>
+      <section class="identidad">
+  <img class="logo" src="../img/logo.jpeg" alt="Logo Tierra de Sabor">
+  <div class="identidad-texto">
+    <h2>Guarniciones</h2>
+    <p>Las guarniciones que ele presentamos despertarán sentimientos en su paladar.</p>
+  </div>
 </section>
+    </header>
+<div class="slider">
+  <button class="flecha prev" aria-label="Plato anterior">&#10094;</button>
+
+
+
+  <ul class="carta" id="carta">
+    <li class="plato">
+      <img src="img/Diseño sin título (4).png" alt="Queso artesano">
+      <div class="info">
+        <h2 class="lacteos">Patatas Asadas a la Brasera con hierbas aromáticas locales.</h2>
+      </div>
+    </li>
+
+    <li class="plato">
+      <img src="img/Diseño sin título (5).png" alt="Cecina de León">
+      <div class="info">
+        <h2>Verduras de Temporada de la Huerta Castellana salteadas en AOVE.</h2>
+      </div>
+    </li>
+
+    <li class="plato">
+      <img src="img/Diseño sin título (2).png" alt="Morcilla de Burgos">
+      <div class="info">
+        <h2 class="gluten">Pan Ácimo y Hogaza Tradicional de masa madre.</h2>
+      </div>
+    </li>
+
+    <li class="plato">
+      <img src="img/Diseño sin título (3).png" alt="Lomo de Guijuelo">
+      <div class="info">
+        <h2>Pimientos Piquillo asados a la leña con un toque de ajo confitado.</h2>
+      </div>
+    </li>
+
+    <li class="plato">
+      <img src="img/Diseño sin título (1).png" alt="Croquetas de jamón ibérico">
+      <div class="info">
+        <h2 class="gluten">Ensalada de la Huerta con Tomates de Temporada y cebolleta fresca.</h2>
+      </div>
+    </li>
+  </ul>
+
+
+  <button class="flecha next" aria-label="Plato siguiente">&#10095;</button>
+</div>
+
+<div id="footer-container"></div>
+
+<script src="../scriptfooter.js" defer></script>
+</section><script>
+  const carta = document.getElementById('carta');
+  const prev  = document.querySelector('.flecha.prev');
+  const next  = document.querySelector('.flecha.next');
+
+  // Cuánto se desplaza: el ancho de un plato + el hueco entre platos
+  function paso() {
+    const plato = carta.querySelector('.plato');
+    const gap = parseFloat(getComputedStyle(carta).columnGap) || 0;
+    return plato.offsetWidth + gap;
+  }
+
+  prev.addEventListener('click', () => carta.scrollBy({ left: -paso() }));
+  next.addEventListener('click', () => carta.scrollBy({ left:  paso() }));
+
+  // Desactiva la flecha cuando llegas al principio o al final
+  function actualizarFlechas() {
+    prev.disabled = carta.scrollLeft <= 1;
+    next.disabled = carta.scrollLeft + carta.clientWidth >= carta.scrollWidth - 1;
+    prev.style.opacity = prev.disabled ? 0.3 : 1;
+    next.style.opacity = next.disabled ? 0.3 : 1;
+  }
+  carta.addEventListener('scroll', actualizarFlechas);
+  window.addEventListener('resize', actualizarFlechas);
+  actualizarFlechas();
+</script>
+</body>
+</html>
 

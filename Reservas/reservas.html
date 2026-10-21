@@ -4,38 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Reserva tu mesa en Tierra de Sabor. Elige la fecha, la hora y el número de personas.">
+
     <title>Reservas | Tierra de Sabor</title>
+
     <link rel="stylesheet" href="../base.css">
     <link rel="stylesheet" href="stylereserva.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
     <script src="script.js" defer></script>
 </head>
 
 <body>
 
+    <!-- CABECERA -->
     <header>
-        <a href="../index.html" id="volverInicio" class="boton-volver">Volver al inicio</a>
-        <img class="logo" src="../img/logo.jpeg" alt="Logo Tierra de Sabor">
+        <a href="../index.html" id="volverInicio" class="boton-volver">
+            Volver al inicio
+        </a>
+
+        <img class="logo" src="../img/logo.jpeg" alt="Logo de Tierra de Sabor">
+
         <h1>Reserva tu mesa</h1>
+
         <p class="descripcion">
             Selecciona una fecha, una hora y cuántas personas sois.
         </p>
     </header>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main>
 
-        <section class="calendario">
-
+        <!-- CALENDARIO -->
+        <section class="calendario" aria-labelledby="mesActual">
             <div class="cabecera-calendario">
 
-                <button type="button" id="mesAnterior" aria-label="Mes anterior">&lt;</button>
+                <button type="button" id="mesAnterior" aria-label="Mes anterior">
+                    &lt;
+                </button>
 
-                <h2 id="mesActual"></h2>
+                <h2 id="mesActual" aria-live="polite"></h2>
 
-                <button type="button" id="mesSiguiente" aria-label="Mes siguiente">&gt;</button>
+                <button type="button" id="mesSiguiente" aria-label="Mes siguiente">
+                    &gt;
+                </button>
 
             </div>
 
-            <div class="dias-semana">
+            <div class="dias-semana" aria-hidden="true">
                 <span>L</span>
                 <span>M</span>
                 <span>X</span>
@@ -45,13 +66,19 @@
                 <span>D</span>
             </div>
 
-            <div id="diasCalendario" class="dias-calendario"></div>
+            <div id="diasCalendario" class="dias-calendario"
+                role="group" aria-label="Selecciona un día">
+            </div>
 
+            <p id="fechaSeleccionada" aria-live="polite">
+                Selecciona una fecha.
+            </p>
         </section>
 
-        <section class="horarios">
+        <!-- HORARIOS -->
+        <section class="horarios" aria-labelledby="tituloHorarios">
 
-            <h2>Selecciona una hora</h2>
+            <h2 id="tituloHorarios">Selecciona una hora</h2>
 
             <div id="horas" class="horas">
 
@@ -67,30 +94,136 @@
 
             </div>
 
+            <p id="horaSeleccionada" aria-live="polite">
+                Selecciona una hora.
+            </p>
+
         </section>
 
-        <section class="personas">
-            <h2>Número de personas</h2>
+        <!-- NÚMERO DE PERSONAS -->
+        <section class="personas" aria-labelledby="tituloPersonas">
+
+            <h2 id="tituloPersonas">Número de personas</h2>
 
             <div class="contador">
-                <button type="button" id="menos" aria-label="Una persona menos">−</button>
-                <span id="cantidad">2</span>
-                <button type="button" id="mas" aria-label="Una persona más">+</button>
+
+                <button type="button" id="menos"
+                    aria-label="Una persona menos">
+                    −
+                </button>
+
+                <span id="cantidad" aria-live="polite">2</span>
+
+                <button type="button" id="mas"
+                    aria-label="Una persona más">
+                    +
+                </button>
+
             </div>
+
+            <p>Se permiten reservas de 1 a 10 personas.</p>
+
         </section>
 
-        <button type="button" id="botonReservar" class="boton-reservar">
-            Reservar mesa
-        </button>
+        <!-- DATOS DE CONTACTO DEL CLIENTE -->
+        <section class="datos-cliente" aria-labelledby="tituloDatos">
 
-        <div id="confirmacion" class="confirmacion" role="status" aria-live="polite"></div>
+            <h2 id="tituloDatos">Tus datos de contacto</h2>
+
+            <p>Necesitamos estos datos para gestionar tu reserva.</p>
+
+            <form id="formularioReserva">
+
+                <div class="campo">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre"
+                        placeholder="Tu nombre y apellidos"
+                        autocomplete="name" required>
+                </div>
+
+                <div class="campo">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono"
+                        placeholder="Tu número de teléfono"
+                        autocomplete="tel" required>
+                </div>
+
+                <div class="campo">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email"
+                        placeholder="ejemplo@correo.com"
+                        autocomplete="email" required>
+                </div>
+
+                <div class="campo">
+                    <label for="observaciones">
+                        Observaciones (opcional)
+                    </label>
+
+                    <textarea id="observaciones" name="observaciones"
+                        rows="4"
+                        placeholder="Alergias, necesidades especiales, etc."></textarea>
+                </div>
+
+                <button type="submit" id="botonReservar"
+                    class="boton-reservar">
+                    Reservar mesa
+                </button>
+
+            </form>
+
+            <div id="confirmacion" class="confirmacion"
+                role="status" aria-live="polite">
+            </div>
+
+        </section>
 
     </main>
 
+    <!-- CONTACTO DEL RESTAURANTE -->
+    <section class="contacto" id="contacto"
+        aria-labelledby="tituloContacto">
+
+        <h2 id="tituloContacto">Contacta con nosotros</h2>
+
+        <p>¿Tienes alguna duda? Estaremos encantados de ayudarte.</p>
+
+        <div class="datos-contacto">
+
+            <p>
+                <strong>Teléfono:</strong>
+                <a href="tel:+34910000000">910 000 000</a>
+            </p>
+
+            <p>
+                <strong>Correo electrónico:</strong>
+                <a href="mailto:reservas@tierradesabor.example">
+                    reservas@tierradesabor.example
+                </a>
+            </p>
+
+            <p>
+                <strong>Horario de atención:</strong>
+                De lunes a domingo, de 10:00 a 23:00.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- PIE DE PÁGINA -->
     <footer>
-        © 2025 Tierra de Sabor – Todos los derechos reservados
+        <p>
+            © 2026 Tierra de Sabor – Todos los derechos reservados
+        </p>
+
+        <nav aria-label="Enlaces del pie de página">
+            <a href="../index.html">Inicio</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
     </footer>
 
 </body>
 
 </html>
+```
