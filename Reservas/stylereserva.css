@@ -321,6 +321,7 @@ main {
 }
 /* DATOS DEL CLIENTE Y CONTACTO */
 
+
 .datos-cliente,
 .contacto {
     display: flex;
@@ -328,6 +329,15 @@ main {
     align-items: center;
     text-align: center;
     margin: 30px auto;
+    padding: 30px;
+    width: 80%;
+    max-width: 700px;
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #f2cc07;
+    border-radius: 15px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .datos-cliente h2,
@@ -341,10 +351,6 @@ main {
     flex-direction: column;
     gap: 8px;
     margin-bottom: 20px;
-}
-.contacto h2,
-.contacto > p {
-    text-align: center;
 }
 
 .campo label {
